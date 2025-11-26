@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elimination Study Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #fa709a;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #f77062;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .tab {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .tab.urinary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .tab.bowel {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        
+        .tab.meds {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        
+        .tab.active {
+            transform: scale(1.1);
+        }
+        
+        .content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section {
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 15px;
+            border-left: 5px solid;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .urinary .section { border-left-color: #764ba2; }
+        .bowel .section { border-left-color: #f5576c; }
+        .meds .section { border-left-color: #00f2fe; }
+        
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h3 {
+            font-size: 1.4em;
+            margin: 15px 0 10px 0;
+            color: #333;
+        }
+        
+        .emoji {
+            font-size: 1.5em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:hover {
+            background: #f5f5ff;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 3px dashed #d63031;
+            font-weight: bold;
+        }
+        
+        .tip-box {
+            background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #00b894;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #fab1a0 0%, #ff7675 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #d63031;
+            color: #2d3436;
+        }
+        
+        ul {
+            margin: 10px 0 10px 25px;
+            line-height: 1.8;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        strong {
+            color: #667eea;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .definition-box {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💧 Nursing Study Guide: ELIMINATION</h1>
+        <p class="subtitle">Urinary & Bowel Elimination • Diuretics & Management</p>
+        
+        <div class="tabs">
+            <button class="tab urinary active" onclick="showContent('urinary')">💧 Urinary Elimination</button>
+            <button class="tab bowel" onclick="showContent('bowel')">🚽 Bowel Elimination</button>
+            <button class="tab meds" onclick="showContent('meds')">💊 Diuretics & Management</button>
+        </div>
+        
+        <!-- URINARY ELIMINATION CONTENT -->
+        <div id="urinary" class="content urinary active">
+            <div class="definition-box">
+                <h2 style="margin-bottom: 10px;">What is Elimination?</h2>
+                <p><strong>Elimination</strong> is the process of excreting waste from the body</p>
+                <p style="margin-top: 10px;"><strong>Urinary Elimination (Micturition/Voiding):</strong> Passing urine out of the urinary tract</p>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">📚</span>Key Terminology</h2>
+                <table>
+                    <tr>
+                        <th>Term</th>
+                        <th>Definition</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Continence</strong></td>
+                        <td>Purposeful, VOLUNTARY control over elimination</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Incontinence</strong></td>
+                        <td>LOSS of control - involuntary leakage of urine or feces</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Retention</strong></td>
+                        <td>Keeping materials inside that should be expelled</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Micturition</strong></td>
+                        <td>The act of urinating/voiding</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">🚨</span>Types of Urinary Incontinence</h2>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Trigger/Cause</th>
+                    </tr>
+                    <tr style="background: #e3f2fd;">
+                        <td><strong>Stress</strong></td>
+                        <td>Small urine leakage with increased abdominal pressure</td>
+                        <td>Coughing, sneezing, laughing, exercising, jumping</td>
+                    </tr>
+                    <tr style="background: #f3e5f5;">
+                        <td><strong>Urge</strong></td>
+                        <td>Large amounts leak at unexpected times (even sleeping)</td>
+                        <td>Sudden, strong, uncontrollable need to urinate</td>
+                    </tr>
+                    <tr style="background: #fff3e0;">
+                        <td><strong>Overactive Bladder (OAB)</strong></td>
+                        <td>Urinary frequency & urgency, with or without leakage</td>
+                        <td>Bladder muscle contractions</td>
+                    </tr>
+                    <tr style="background: #f1f8e9;">
+                        <td><strong>Functional</strong></td>
+                        <td>Can't get to toilet in time due to physical/cognitive issues</td>
+                        <td>Mobility problems, confusion, environmental barriers</td>
+                    </tr>
+                    <tr style="background: #fce4ec;">
+                        <td><strong>Mixed</strong></td>
+                        <td>Combination of stress AND urge incontinence</td>
+                        <td>Multiple factors</td>
+                    </tr>
+                    <tr style="background: #e0f2f1;">
+                        <td><strong>Transient</strong></td>
+                        <td>Temporary leakage that will resolve</td>
+                        <td>Infection, new medication, severe cough</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">🔴</span>Urinary Retention</h2>
+                <p><strong>Definition:</strong> Inability to fully empty the bladder (partial or complete)</p>
+                <table style="margin-top: 15px;">
+                    <tr>
+                        <th>Type</th>
+                        <th>Onset</th>
+                        <th>Clinical Findings</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Acute</strong></td>
+                        <td>Rapid, sudden</td>
+                        <td>Pressure/severe pain over pubic area; NO urine output for hours; restlessness, sweating</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chronic</strong></td>
+                        <td>Slow, gradual</td>
+                        <td>↓ volume voided; straining; frequency/urgency; small voids; may have incontinence</td>
+                    </tr>
+                </table>
+                
+                <div class="warning-box" style="margin-top: 15px;">
+                    <h3>⚠️ Consequences of Urinary Retention</h3>
+                    <ul>
+                        <li>Pain and discomfort</li>
+                        <li>Chronic bladder infections (UTIs)</li>
+                        <li>Bladder distention (overstretching)</li>
+                        <li><strong>Urinary reflux</strong> → urine flows back to ureters</li>
+                        <li><strong>Pyelonephritis</strong> (kidney infection)</li>
+                        <li><strong>Renal atrophy</strong> (kidney shrinkage) 🚨</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">🦠</span>Urinary Tract Infections (UTIs)</h2>
+                <div class="highlight-box">
+                    <p><strong>Pathophysiology:</strong> Bacteria (usually E. coli from bowel) travel UP the urethra and infect the bladder. They multiply and irritate the bladder lining.</p>
+                </div>
+                
+                <p><strong>Key Facts:</strong></p>
+                <ul>
+                    <li>The urinary tract is normally <strong>STERILE</strong> (unlike the bowel)</li>
+                    <li><strong>5th most common</strong> healthcare-associated infection (HAI)</li>
+                    <li>If UTI develops <strong>72+ hours after admission</strong> = likely HAI</li>
+                    <li>Most often caused by <strong>E. coli</strong></li>
+                </ul>
+                
+                <div class="tip-box">
+                    <h3>💡 Prevention is KEY!</h3>
+                    <ul>
+                        <li>Strict infection control & hygiene</li>
+                        <li>Proper perineal care</li>
+                        <li>Medical & surgical asepsis</li>
+                        <li>Minimize catheter use</li>
+                        <li>Use sterile technique for catheterization</li>
+                        <li>Prevent CAUTIs (Catheter-Associated UTIs)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">🔄</span>Urinary Diversions</h2>
+                <p>Surgical procedure creating a NEW route for urine to exit, bypassing the bladder</p>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h3>Continent Reservoir</h3>
+                        <p><strong>Internal pouch</strong> holds urine</p>
+                        <p>Patient empties via small stoma using catheter</p>
+                        <p><strong>Example:</strong> Mitrofanoff procedure (uses appendix as passageway to belly button)</p>
+                    </div>
+                    <div class="card">
+                        <h3>Incontinent Diversion</h3>
+                        <p><strong>External collection bag</strong></p>
+                        <p>Urine flows continuously from ureters into pouch</p>
+                        <p><strong>Example:</strong> Ileoconduit</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">⚠️</span>Risk Factors for Urinary Problems</h2>
+                <table>
+                    <tr>
+                        <th>Risk Factor</th>
+                        <th>How It Affects Elimination</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Age</strong></td>
+                        <td>Children: Immature nervous system. Older adults: ↓ fiber/fluids, less exercise, enlarged prostate (men), menopause changes (women)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pregnancy</strong></td>
+                        <td>Progesterone relaxes smooth muscles; uterus presses on bladder (frequency) and bowel (constipation)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Neurological Impairment</strong></td>
+                        <td>Stroke or spinal cord injury damages nerves/muscles → incontinence or retention</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Altered Mobility</strong></td>
+                        <td>Walker, wheelchair, needing assistance → can't reach toilet in time</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cognitive Impairment</strong></td>
+                        <td>Lack of recognition of need to eliminate</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Medical Conditions</strong></td>
+                        <td>Diabetes, kidney disease, enlarged prostate, congenital defects</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">👶👵</span>Growth & Development Considerations</h2>
+                <p><strong>Children:</strong> Neurological system not fully developed until age 2-3. Must be able to:</p>
+                <ul>
+                    <li>Recognize the sensation</li>
+                    <li>Hold urine for 1-2 hours</li>
+                    <li>Communicate the need</li>
+                </ul>
+                
+                <p style="margin-top: 15px;"><strong>Older Adults:</strong> Normal aging causes urinary system changes:</p>
+                <ul>
+                    <li>Reduced bladder capacity</li>
+                    <li>Weakened pelvic floor muscles</li>
+                    <li>Increased risk of incontinence</li>
+                    <li>Prostate enlargement (men)</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">🩺</span>Nursing Assessment</h2>
+                <ol>
+                    <li><strong>History:</strong> Urination patterns, self-care ability, symptoms</li>
+                    <li><strong>Physical Exam:</strong> Palpate kidneys, bladder (above symphysis pubis for distention), check external genitalia & perineal skin</li>
+                    <li><strong>I&O:</strong> Document Intake & Output; assess urine color, clarity, odor</li>
+                    <li><strong>Labs:</strong> Urinalysis, urine culture</li>
+                </ol>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">⚕️</span>Nursing Interventions</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Catheters</h3>
+                        <p>Types: Straight, indwelling, triple lumen</p>
+                        <p><strong>PREVENT CAUTIs!</strong></p>
+                        <p>Use sterile technique & proper hygiene</p>
+                    </div>
+                    <div class="card">
+                        <h3>Lifestyle Changes</h3>
+                        <p><strong>Kegel exercises</strong> (Pelvic Floor Muscle Training)</p>
+                        <p>Strengthens bladder support muscles</p>
+                    </div>
+                    <div class="card">
+                        <h3>Bladder Training</h3>
+                        <p>Toileting schedules</p>
+                        <p>Bladder retraining programs</p>
+                    </div>
+                    <div class="card">
+                        <h3>Intermittent Catheterization</h3>
+                        <p>Teach proper aseptic/sterile technique</p>
+                        <p>Maintain good skin care</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- BOWEL ELIMINATION CONTENT -->
+        <div id="bowel" class="content bowel">
+            <div class="definition-box">
+                <h2 style="margin-bottom: 10px;">Bowel Elimination</h2>
+                <p><strong>Definition:</strong> Passing stool (feces) out of the intestinal tract through defecation (bowel movement)</p>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">💩</span>Common Bowel Problems</h2>
+                <table>
+                    <tr>
+                        <th>Problem</th>
+                        <th>Pathophysiology (How It Goes Wrong)</th>
+                    </tr>
+                    <tr style="background: #fff3e0;">
+                        <td><strong>Constipation</strong></td>
+                        <td>Colon absorbs TOO MUCH water from stool; peristalsis slows down → hard, dry, difficult-to-pass stool</td>
+                    </tr>
+                    <tr style="background: #e3f2fd;">
+                        <td><strong>Diarrhea</strong></td>
+                        <td>Bowel lining secretes too much fluid OR waste moves too fast → prevents water absorption</td>
+                    </tr>
+                    <tr style="background: #fce4ec;">
+                        <td><strong>Inflammatory Bowel Disease (IBD)</strong></td>
+                        <td>Immune system attacks GI lining → chronic inflammation, ulcers, bleeding. <br><strong>Crohn's:</strong> Any GI part. <strong>Ulcerative Colitis:</strong> Colon only</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">😰</span>Consequences of Fecal Retention</h2>
+                <div class="warning-box">
+                    <ul>
+                        <li>Abdominal pain & discomfort</li>
+                        <li>Nausea and vomiting</li>
+                        <li>Loss of appetite</li>
+                        <li>Stool becomes dry and hard</li>
+                        <li><strong>Fecal impaction</strong> (stool blocks intestine)</li>
+                        <li><strong>Ileus</strong> (loss of GI muscle activity - often post-surgery/trauma)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">⚠️</span>Risk Factors for Bowel Problems</h2>
+                <ul>
+                    <li><strong>Age:</strong> Children may ignore urge; older adults have ↓ fiber/fluid intake & exercise</li>
+                    <li><strong>Pregnancy:</strong> Progesterone relaxes muscles; uterus pressure → constipation</li>
+                    <li><strong>Neurological impairment:</strong> Nerve damage affects bowel control</li>
+                    <li><strong>Altered mobility:</strong> Can't reach toilet → ignoring urge → retention</li>
+                    <li><strong>Medications:</strong> Opioids, iron, anticholinergics cause constipation</li>
+                    <li><strong>Diet:</strong> Low fiber, low fluid intake</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">🔬</span>Diagnostic Tests</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>History & Physical</h3>
+                        <p>Inspection, auscultation (listen for bowel sounds), palpation</p>
+                    </div>
+                    <div class="card">
+                        <h3>Laboratory Tests</h3>
+                        <p>Stool cultures, blood samples, fecal occult blood test</p>
+                    </div>
+                    <div class="card">
+                        <h3>Imaging</h3>
+                        <p>X-ray, CT scan, MRI, ultrasound</p>
+                    </div>
+                    <div class="card">
+                        <h3>Direct Observation</h3>
+                        <p>Colonoscopy, sigmoidoscopy</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">🎯</span>Prevention & Screening</h2>
+                <div class="tip-box">
+                    <h3>Primary Prevention</h3>
+                    <ul>
+                        <li>Stay hydrated!</li>
+                        <li>Eat enough fiber (fruits, vegetables, whole grains)</li>
+                        <li>Regular physical activity</li>
+                        <li>Maintain regular toileting habits</li>
+                    </ul>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 15px;">
+                    <h3>🔍 Secondary Prevention (Screening)</h3>
+                    <p><strong>Fecal Occult Blood Test & Colonoscopy:</strong> Highly effective for detecting early colon cancer</p>
+                    <p><strong>Screening starts:</strong> Around age 45 (or earlier based on risk)</p>
+                    <p><strong>PSA Test (Prostate):</strong> Annual checks for men - only urinary screening tool</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">🏥</span>Surgical Interventions</h2>
+                <table>
+                    <tr>
+                        <th>Procedure</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Colectomy</strong></td>
+                        <td>Colon resection (removal of part/all of colon)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Colostomy/Ileostomy</strong></td>
+                        <td>Bowel diversion to external stoma/pouch on abdomen</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rectal Prolapse Repair</strong></td>
+                        <td>Surgery to fix rectum that has fallen/protruded</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hemorrhoidectomy</strong></td>
+                        <td>Removal of hemorrhoids</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">💊</span>Pharmacological Interventions</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>For Constipation</h3>
+                        <p><strong>Laxatives:</strong> Stimulate bowel movement</p>
+                        <p><strong>Stool softeners:</strong> Make stool easier to pass</p>
+                    </div>
+                    <div class="card">
+                        <h3>For Diarrhea</h3>
+                        <p><strong>Antidiarrheals:</strong> Slow GI motility</p>
+                        <p>Example: Loperamide (Imodium)</p>
+                    </div>
+                    <div class="card">
+                        <h3>For Pain/Spasms</h3>
+                        <p><strong>Antispasmodics:</strong> Reduce cramping</p>
+                        <p><strong>Analgesics:</strong> Pain relief</p>
+                    </div>
+                    <div class="card">
+                        <h3>For IBD</h3>
+                        <p><strong>Anti-inflammatories</strong></p>
+                        <p><strong>Immunosuppressants</strong></p>
+                        <p>Manage chronic inflammation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DIURETICS & MANAGEMENT CONTENT -->
+        <div id="meds" class="content meds">
+            <div class="definition-box">
+                <h2 style="margin-bottom: 10px;">What Are Diuretics?</h2>
+                <p>Medications that increase urine production to remove excess fluid from the body</p>
+                <p style="margin-top: 10px;"><strong>"Water Pills"</strong> that help kidneys eliminate sodium and water</p>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">🫘</span>Kidney Functions (Review)</h2>
+                <ol>
+                    <li><strong>Cleanse extracellular fluid (ECF)</strong></li>
+                    <li><strong>Maintain acid-base balance</strong></li>
+                    <li><strong>Excrete metabolic waste & foreign substances</strong></li>
+                </ol>
+                
+                <div class="highlight-box" style="margin-top: 15px;">
+                    <h3>Three Basic Renal Processes</h3>
+                    <ol>
+                        <li><strong>Filtration</strong> - occurs at the glomerulus</li>
+                        <li><strong>Reabsorption</strong> - 99% of water, electrolytes, nutrients returned to blood</li>
+                        <li><strong>Active Tubular Secretion</strong> - removes waste into urine</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">⚙️</span>How Diuretics Work</h2>
+                <div class="card" style="background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); padding: 20px;">
+                    <p style="font-size: 1.1em;"><strong>Mechanism of Action:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Diuretics <strong>BLOCK sodium (Na⁺) and chloride (Cl⁻) reabsorption</strong> at specific sites in the nephron</li>
+                        <li>When these electrolytes can't be reabsorbed → <strong>water stays in the tubule</strong></li>
+                        <li>More water in tubule = <strong>MORE URINE</strong> excreted</li>
+                        <li><strong>Greatest diuresis site:</strong> Proximal tubule</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">⚠️</span>Adverse Effects Common to ALL Diuretics</h2>
+                <div class="warning-box">
+                    <p style="font-size: 1.1em; margin-bottom: 10px;"><strong>Because diuretics remove fluid AND electrolytes, they ALL carry these risks:</strong></p>
+                    <ul>
+                        <li><strong>Hypovolemia</strong> (low fluid volume) / Dehydration</li>
+                        <li><strong>Hypotension</strong> (low blood pressure) - due to fluid loss</li>
+                        <li><strong>Electrolyte imbalances</strong> (↓ sodium, ↓ chloride, ↓ potassium)</li>
+                        <li><strong>Acid-base imbalances</strong></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">💊</span>Types of Diuretics</h2>
+                <table>
+                    <tr>
+                        <th>Class</th>
+                        <th>Examples</th>
+                        <th>Site of Action</th>
+                        <th>Key Points</th>
+                    </tr>
+                    <tr style="background: #e3f2fd;">
+                        <td><strong>Loop Diuretics</strong></td>
+                        <td>Furosemide (Lasix), Bumetanide</td>
+                        <td>Loop of Henle</td>
+                        <td>MOST POWERFUL! Watch K+ levels. Can cause ototoxicity</td>
+                    </tr>
+                    <tr style="background: #f3e5f5;">
+                        <td><strong>Thiazide Diuretics</strong></td>
+                        <td>Hydrochlorothiazide (HCTZ)</td>
+                        <td>Distal tubule</td>
+                        <td>First-line for HTN. Monitor K+, glucose, uric acid</td>
+                    </tr>
+                    <tr style="background: #fff3e0;">
+                        <td><strong>Potassium-Sparing</strong></td>
+                        <td>Spironolactone, Amiloride</td>
+                        <td>Collecting duct</td>
+                        <td>WEAKEST. KEEPS potassium! Risk: hyperkalemia</td>
+                    </tr>
+                    <tr style="background: #f1f8e9;">
+                        <td><strong>Osmotic Diuretics</strong></td>
+                        <td>Mannitol</td>
+                        <td>Proximal tubule & loop</td>
+                        <td>For cerebral edema, increased ICP. IV only</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">🩺</span>Nursing Considerations for Diuretics</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Monitor Closely</h3>
+                        <ul style="margin-left: 20px;">
+                            <li>Daily weights (same time, same scale)</li>
+                            <li>I&O (Intake & Output)</li>
+                            <li>BP (watch for hypotension)</li>
+                            <li>Electrolytes (especially K+)</li>
+                            <li>Signs of dehydration</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Patient Education</h3>
+                        <ul style="margin-left: 20px;">
+                            <li>Take in morning (avoid nocturia)</li>
+                            <li>Change positions slowly</li>
+                            <li>Report dizziness, weakness</li>
+                            <li>Weigh daily at home</li>
+                            <li>Know signs of low K+</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Diet Considerations</h3>
+                        <ul style="margin-left: 20px;">
+                            <li>Loop/Thiazide: Eat K+-rich foods (bananas, oranges, spinach)</li>
+                            <li>K+-sparing: AVOID excess K+ foods</li>
+                            <li>Monitor sodium intake</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Safety</h3>
+                        <ul style="margin-left: 20px;">
+                            <li>Fall risk ↑ (from hypotension)</li>
+                            <li>Assess for dizziness</li>
+                            <li>Bathroom accessibility</li>
+                            <li>Avoid driving if dizzy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">🚨</span>Critical Complications</h2>
+                <div class="warning-box">
+                    <h3>Complete Loss of Renal Function</h3>
+                    <p><strong>Consequence:</strong> Inability to remove toxins, metabolic waste, and fluids</p>
+                    <p><strong>Result:</strong> Build-up can lead to DEATH</p>
+                    <p><strong>Treatment:</strong> Dialysis or kidney transplant</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">💉</span>Invasive Interventions</h2>
+                <table>
+                    <tr>
+                        <th>Intervention</th>
+                        <th>Purpose</th>
+                        <th>Nursing Care</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Dialysis</strong></td>
+                        <td>Artificial kidney filtration for renal failure</td>
+                        <td>Monitor access site, fluid status, electrolytes, VS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Straight Catheterization</strong></td>
+                        <td>One-time bladder emptying</td>
+                        <td>Sterile technique! Measure output</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Indwelling Catheter</strong></td>
+                        <td>Continuous bladder drainage</td>
+                        <td>CAUTI prevention! Remove ASAP. Secure properly</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stent Placement</strong></td>
+                        <td>Relieve urinary retention/obstruction</td>
+                        <td>Monitor for hematuria, infection</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Prostate Surgery</strong></td>
+                        <td>Relieve obstruction from enlarged prostate</td>
+                        <td>Monitor for bleeding, irrigation, teach Kegels</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nephrectomy</strong></td>
+                        <td>Kidney removal (cancer, severe damage)</td>
+                        <td>Monitor remaining kidney function closely</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2><span class="emoji">🎯</span>Nursing Diagnoses for Elimination</h2>
+                <div class="grid">
+                    <div class="card" style="background: #e3f2fd;">
+                        <h3>Urinary Issues</h3>
+                        <ul style="margin-left: 20px;">
+                            <li>Functional Incontinence</li>
+                            <li>Stress Incontinence</li>
+                            <li>Urge Incontinence</li>
+                            <li>Overflow Incontinence</li>
+                            <li>Urinary Retention</li>
+                            <li>Risk for UTI</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="background: #f3e5f5;">
+                        <h3>Bowel Issues</h3>
+                        <ul style="margin-left: 20px;">
+                            <li>Constipation</li>
+                            <li>Diarrhea</li>
+                            <li>Bowel Incontinence</li>
+                            <li>Risk for Constipation</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="background: #fff3e0;">
+                        <h3>Related Problems</h3>
+                        <ul style="margin-left: 20px;">
+                            <li>Impaired Skin Integrity</li>
+                            <li>Impaired Self-Toileting</li>
+                            <li>Social Isolation</li>
+                            <li>Risk for Falls</li>
+                            <li>Disturbed Body Image</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" style="margin-top: 20px; background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);">
+            <h2 style="text-align: center;"><span class="emoji">🎓</span>Quick Memory Tricks!</h2>
+            <div class="grid">
+                <div class="card" style="background: #fff3cd;">
+                    <h3>💧 Types of Incontinence</h3>
+                    <p><strong>Stress = Sneeze</strong></p>
+                    <p><strong>Urge = Urgent Need</strong></p>
+                    <p><strong>Functional = Can't Function to get there</strong></p>
+                </div>
+                <div class="card" style="background: #d1ecf1;">
+                    <h3>💊 Diuretics Power</h3>
+                    <p><strong>Loop = LOUD & POWERFUL</strong></p>
+                    <p><strong>Thiazide = Think "THI" for "first-line HTN"</strong></p>
+                    <p><strong>K+-Sparing = KEEPS potassium!</strong></p>
+                </div>
+                <div class="card" style="background: #d4edda;">
+                    <h3>🚨 Retention vs Incontinence</h3>
+                    <p><strong>Retention = Can't get it OUT</strong></p>
+                    <p><strong>Incontinence = Can't keep it IN</strong></p>
+                </div>
+                <div class="card" style="background: #f8d7da;">
+                    <h3>🦠 UTI Prevention</h3>
+                    <p><strong>STERILE = Urinary tract!</strong></p>
+                    <p><strong>NOT STERILE = GI tract</strong></p>
+                    <p>E. coli travels UP from bowel!</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" style="margin-top: 20px; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+            <h2 style="text-align: center;"><span class="emoji">📝</span>Must-Know Facts</h2>
+            <table>
+                <tr>
+                    <th>Category</th>
+                    <th>Key Fact</th>
+                </tr>
+                <tr>
+                    <td><strong>UTI Timing</strong></td>
+                    <td>72+ hours after admission = Healthcare-Associated Infection (HAI)</td>
+                </tr>
+                <tr>
+                    <td><strong>Toilet Training Age</strong></td>
+                    <td>Neurological readiness: 2-3 years old</td>
+                </tr>
+                <tr>
+                    <td><strong>Urinary Tract Status</strong></td>
+                    <td>Normally STERILE (unlike GI tract)</td>
+                </tr>
+                <tr>
+                    <td><strong>Most Common UTI Cause</strong></td>
+                    <td>E. coli from the bowel</td>
+                </tr>
+                <tr>
+                    <td><strong>Greatest Diuresis Site</strong></td>
+                    <td>Proximal tubule of nephron</td>
+                </tr>
+                <tr>
+                    <td><strong>Colonoscopy Start Age</strong></td>
+                    <td>Around 45 years (or earlier if high risk)</td>
+                </tr>
+                <tr>
+                    <td><strong>Most Powerful Diuretic</strong></td>
+                    <td>Loop diuretics (Furosemide/Lasix)</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="section" style="margin-top: 20px; background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);">
+            <h2 style="text-align: center;"><span class="emoji">⚠️</span>Red Flag Alert!</h2>
+            <div class="grid">
+                <div class="card" style="border: 3px solid #dc3545;">
+                    <h3>🔴 Urinary Red Flags</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>No urine output for hours = acute retention</li>
+                        <li>Severe suprapubic pain = distended bladder</li>
+                        <li>Fever + flank pain = pyelonephritis (kidney infection)</li>
+                        <li>Hematuria (blood in urine) = infection, trauma, or tumor</li>
+                    </ul>
+                </div>
+                <div class="card" style="border: 3px solid #dc3545;">
+                    <h3>🔴 Bowel Red Flags</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>No BM for 3+ days with pain = impaction risk</li>
+                        <li>Blood in stool = GI bleeding, cancer screening needed</li>
+                        <li>Severe cramping + fever = possible IBD flare or infection</li>
+                        <li>Absent bowel sounds = ileus (emergency!)</li>
+                    </ul>
+                </div>
+                <div class="card" style="border: 3px solid #dc3545;">
+                    <h3>🔴 Diuretic Red Flags</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>Severe hypotension = hypovolemia</li>
+                        <li>Muscle weakness/cramps = electrolyte imbalance</li>
+                        <li>Confusion/lethargy = severe dehydration or electrolyte issue</li>
+                        <li>Irregular heartbeat = K+ imbalance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="highlight-box" style="margin-top: 20px;">
+            <h2 style="text-align: center; margin-bottom: 10px;">✅ NCLEX SUCCESS TIPS FOR ELIMINATION ✅</h2>
+            <ul>
+                <li><strong>STERILE TECHNIQUE:</strong> Always use with catheterization - CAUTIs are preventable!</li>
+                <li><strong>I&O MATTERS:</strong> Monitor intake and output closely, especially with diuretics</li>
+                <li><strong>ELECTROLYTES:</strong> Watch potassium levels with ALL diuretics</li>
+                <li><strong>SAFETY FIRST:</strong> Incontinence = fall risk! Ensure toilet access</li>
+                <li><strong>CULTURE MATTERS:</strong> Psychosocial implications - maintain dignity and privacy</li>
+                <li><strong>PREVENTION:</strong> Hydration, fiber, mobility, toileting schedules work!</li>
+                <li><strong>TIMING:</strong> Give diuretics in the MORNING to avoid nocturia</li>
+            </ul>
+        </div>
+        
+        <div class="tip-box" style="margin-top: 20px; background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); border-left: 5px solid #e83e8c;">
+            <h2 style="text-align: center; margin-bottom: 15px;">💪 You've Got This!</h2>
+            <p style="text-align: center; font-size: 1.1em;">
+                Elimination is a basic human need - your nursing care makes a HUGE difference in patient comfort, 
+                dignity, and outcomes! Remember: <strong>PREVENTION</strong> (CAUTIs, skin breakdown, falls), 
+                <strong>MONITORING</strong> (I&O, electrolytes, VS), and <strong>EDUCATION</strong> (Kegels, diet, 
+                medication compliance) are your keys to success. Trust your assessment skills and always prioritize 
+                patient safety and dignity! 🌟
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        function showContent(section) {
+            // Hide all content
+            document.querySelectorAll('.content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected content
+            document.getElementById(section).classList.add('active');
+            
+            // Add active to clicked tab
+            event.target.classList.add('active');
+            
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
