@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacology Study Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #764ba2;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        
+        .tab-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+        }
+        
+        .tab-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .tab-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        
+        .tab-button.active {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            transform: scale(1.05);
+        }
+        
+        .content-section {
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .drug-card {
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+            border-left: 6px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .drug-name {
+            font-size: 2em;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .drug-class {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .info-section {
+            margin: 15px 0;
+        }
+        
+        .info-section h3 {
+            color: #764ba2;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #fab1a0 0%, #ff7675 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #d63031;
+        }
+        
+        .tip-box {
+            background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #00b894;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 3px dashed #d63031;
+            font-weight: bold;
+        }
+        
+        ul {
+            margin: 10px 0 10px 30px;
+            line-height: 1.8;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:hover {
+            background: #f5f5ff;
+        }
+        
+        strong {
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💊 Pharmacology Study Guide</h1>
+        <p class="subtitle">GI & Elimination Medications Made Easy!</p>
+        
+        <div class="tab-container">
+            <button class="tab-button active" onclick="showTab('diuretics')">💧 Diuretics</button>
+            <button class="tab-button" onclick="showTab('antiemetics')">🤢 Antiemetics</button>
+            <button class="tab-button" onclick="showTab('motion')">🌊 Motion Sickness</button>
+            <button class="tab-button" onclick="showTab('antidiarrheal')">🛑 Antidiarrheals</button>
+            <button class="tab-button" onclick="showTab('ibs')">🌀 IBS Meds</button>
+            <button class="tab-button" onclick="showTab('ibd')">🔥 IBD Meds</button>
+            <button class="tab-button" onclick="showTab('prokinetic')">⚡ Prokinetics</button>
+            <button class="tab-button" onclick="showTab('laxatives')">💩 Laxatives</button>
+            <button class="tab-button" onclick="showTab('other')">🧬 Other GI Meds</button>
+        </div>
+        
+        <!-- DIURETICS -->
+        <div id="diuretics" class="content-section active">
+            <h2 style="color: #667eea; margin-bottom: 20px;">💧 DIURETICS</h2>
+            
+            <table>
+                <tr>
+                    <th>Type</th>
+                    <th>Power</th>
+                    <th>Potassium Effect</th>
+                    <th>Main Use</th>
+                </tr>
+                <tr>
+                    <td><strong>Loop</strong></td>
+                    <td>💪💪💪 MOST POWERFUL</td>
+                    <td>↓ K+ (LOSES it)</td>
+                    <td>Heart failure, edema</td>
+                </tr>
+                <tr>
+                    <td><strong>Thiazide</strong></td>
+                    <td>💪💪 Moderate</td>
+                    <td>↓ K+ (LOSES it)</td>
+                    <td>Hypertension (1st line!)</td>
+                </tr>
+                <tr>
+                    <td><strong>K+-Sparing</strong></td>
+                    <td>💪 Weakest</td>
+                    <td>↑ K+ (KEEPS it!)</td>
+                    <td>Used WITH other diuretics</td>
+                </tr>
+                <tr>
+                    <td><strong>Osmotic</strong></td>
+                    <td>💪💪 Moderate-Strong</td>
+                    <td>Variable</td>
+                    <td>↑ ICP, cerebral edema</td>
+                </tr>
+            </table>
+            
+            <div class="drug-card">
+                <div class="drug-name">💧 Furosemide (Lasix)</div>
+                <span class="drug-class">Loop Diuretic - THE POWER PLAYER</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Inhibits sodium & chloride reabsorption in Loop of Henle → MASSIVE urine output!
+                </div>
+                
+                <div class="info-section">
+                    <h3>⚠️ Side Effects</h3>
+                    <ul>
+                        <li><strong>Hypokalemia (LOW K+)</strong> 🚨</li>
+                        <li>Dehydration</li>
+                        <li>Hypotension</li>
+                        <li><strong>Ototoxicity</strong> (hearing loss!)</li>
+                        <li>Hyperglycemia</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li>Monitor BP, I&O, daily weight</li>
+                        <li><strong>Administer in MORNING</strong> (avoid nocturia)</li>
+                        <li><strong>Push IV SLOWLY</strong> to prevent ototoxicity</li>
+                        <li>Encourage K+-rich foods (bananas, oranges)</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>🔬 Key Labs:</strong> ↓ K+, ↓ Na+, ↑ BUN/Creatinine, ↑ Glucose
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">💊 Hydrochlorothiazide (HCTZ)</div>
+                <span class="drug-class">Thiazide Diuretic - First-Line for HTN</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Blocks sodium & chloride reabsorption in distal tubules
+                </div>
+                
+                <div class="info-section">
+                    <h3>⚠️ Side Effects</h3>
+                    <ul>
+                        <li>Hypokalemia</li>
+                        <li>Hyponatremia</li>
+                        <li>Dehydration</li>
+                        <li><strong>Hypercalcemia (↑ Ca2+)</strong></li>
+                        <li>Hyperglycemia</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li>Monitor electrolytes & BP</li>
+                        <li>Encourage K+-rich foods</li>
+                        <li>Take in morning</li>
+                        <li>Monitor blood glucose</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-box">
+                    <strong>💡 Remember:</strong> HCTZ is GO-TO for hypertension! "HTN? Use HCTZ!"
+                </div>
+                
+                <div class="warning-box">
+                    <strong>🔬 Key Labs:</strong> ↓ K+, ↓ Na+, ↑ Ca2+, ↑ Glucose
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">🧠 Mannitol</div>
+                <span class="drug-class">Osmotic Diuretic - Brain Saver</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Increases osmotic pressure → prevents water reabsorption
+                </div>
+                
+                <div class="info-section">
+                    <h3>🎯 Used For</h3>
+                    <ul>
+                        <li><strong>Cerebral edema</strong></li>
+                        <li><strong>Increased ICP</strong></li>
+                        <li>Acute renal failure</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>Use filter needle/tubing</strong></li>
+                        <li>Monitor neuro status closely</li>
+                        <li>Monitor I&O & electrolytes</li>
+                        <li><strong>IV ONLY!</strong></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="drug-card" style="border-left-color: #00b894;">
+                <div class="drug-name">🍌 Spironolactone (Aldactone)</div>
+                <span class="drug-class" style="background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);">Potassium-SPARING Diuretic</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Blocks aldosterone → RETAINS potassium, excretes sodium/water
+                </div>
+                
+                <div class="info-section">
+                    <h3>⚠️ Side Effects</h3>
+                    <ul>
+                        <li><strong>HYPERKALEMIA (HIGH K+)</strong> 🚨</li>
+                        <li>Gynecomastia (breast enlargement in men)</li>
+                        <li>Menstrual changes</li>
+                        <li>Dizziness</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>AVOID K+ supplements!</strong></li>
+                        <li><strong>AVOID salt substitutes</strong> (contain K+)</li>
+                        <li>Monitor BP, I&O, electrolytes</li>
+                        <li>Limit K+-rich foods</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>🚨 CRITICAL:</strong> ↑ K+ is MAIN RISK! Never combine with ACE inhibitors or K+ supplements unless directed.
+                </div>
+                
+                <div class="warning-box">
+                    <strong>🔬 Key Labs:</strong> ↑ K+, ↓ Na+
+                </div>
+            </div>
+            
+            <div class="drug-card" style="border-left-color: #00b894;">
+                <div class="drug-name">💚 Triamterene & Amiloride</div>
+                <span class="drug-class" style="background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);">Potassium-SPARING Diuretics</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Inhibit sodium reabsorption in distal tubule → KEEPS potassium
+                </div>
+                
+                <div class="info-section">
+                    <h3>⚠️ Side Effects</h3>
+                    <ul>
+                        <li><strong>Hyperkalemia</strong></li>
+                        <li>Nausea</li>
+                        <li>Dizziness</li>
+                        <li>Photosensitivity (Triamterene)</li>
+                        <li>Muscle cramps</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li>Monitor K+ CLOSELY</li>
+                        <li>Avoid K+-rich foods</li>
+                        <li>Take with food (minimize GI upset)</li>
+                        <li>Monitor cardiac rhythm</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-box">
+                    <strong>💡 Memory Trick:</strong> K+-SPARING = KEEPS Potassium! Watch for HYPERkalemia!
+                </div>
+            </div>
+        </div>
+        
+        <!-- ANTIEMETICS -->
+        <div id="antiemetics" class="content-section">
+            <h2 style="color: #f5576c; margin-bottom: 20px;">🤢 ANTIEMETICS</h2>
+            
+            <div class="drug-card">
+                <div class="drug-name">🤢 Ondansetron (Zofran)</div>
+                <span class="drug-class">Serotonin (5-HT₃) Receptor Antagonist</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Blocks serotonin in CTZ and vagal nerve terminals
+                </div>
+                
+                <div class="info-section">
+                    <h3>⚠️ Side Effects</h3>
+                    <ul>
+                        <li>Headache</li>
+                        <li>Dizziness</li>
+                        <li>Constipation</li>
+                        <li><strong>QT prolongation</strong> (heart rhythm!)</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>Monitor EKG</strong></li>
+                        <li>Give 30 min BEFORE chemo</li>
+                        <li>Give before nausea triggers</li>
+                        <li>Watch for irregular heartbeat</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-box">
+                    <strong>💡 Fun Fact:</strong> Zofran is GOLD STANDARD for chemo-induced nausea!
+                </div>
+                
+                <div class="warning-box">
+                    <strong>🔬 Key Labs:</strong> ↑ LFTs (ALT/AST)
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">💊 Metoclopramide (Reglan)</div>
+                <span class="drug-class">Prokinetic / Antiemetic</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Increases GI motility + blocks dopamine receptors in CTZ
+                </div>
+                
+                <div class="info-section">
+                    <h3>⚠️ Side Effects</h3>
+                    <ul>
+                        <li><strong>EPS (Extrapyramidal Symptoms)</strong> 🚨</li>
+                        <li><strong>Tardive dyskinesia</strong></li>
+                        <li>Restlessness</li>
+                        <li>Drowsiness</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>Monitor for tardive dyskinesia</strong></li>
+                        <li>Give 30 min BEFORE meals</li>
+                        <li>Watch for involuntary movements</li>
+                        <li>Assess mental status</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>🚨 BLACK BOX WARNING:</strong> Risk of tardive dyskinesia with prolonged use! Involuntary facial/tongue movements.
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">💉 Dexamethasone & Methylprednisolone</div>
+                <span class="drug-class">Corticosteroids / Antiemetic Adjuncts</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Enhances antiemetic effect + reduces inflammation
+                </div>
+                
+                <div class="info-section">
+                    <h3>⚠️ Side Effects</h3>
+                    <ul>
+                        <li>Immunosuppression</li>
+                        <li>Hyperglycemia</li>
+                        <li>Mood changes</li>
+                        <li>Insomnia</li>
+                        <li>GI irritation</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li>Monitor blood glucose</li>
+                        <li><strong>NEVER stop abruptly - TAPER!</strong></li>
+                        <li>Give with food</li>
+                        <li>Monitor mood & sleep</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>🔬 Key Labs:</strong> Glucose, WBC, Electrolytes
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">🤰 Doxylamine + Vitamin B6</div>
+                <span class="drug-class">Antihistamine + Vitamin (Pregnancy N/V)</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Reduces nausea via H1 receptor blockade + vitamin support
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>SAFE in pregnancy!</strong></li>
+                        <li>Avoid driving (drowsiness)</li>
+                        <li>Take at bedtime</li>
+                        <li>Commonly used for morning sickness</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-box">
+                    <strong>💡 Remember:</strong> This is SAFE choice for pregnant patients with nausea!
+                </div>
+            </div>
+        </div>
+        
+        <!-- MOTION SICKNESS -->
+        <div id="motion" class="content-section">
+            <h2 style="color: #00f2fe; margin-bottom: 20px;">🌊 MOTION SICKNESS DRUGS</h2>
+            
+            <div class="drug-card">
+                <div class="drug-name">🚢 Scopolamine</div>
+                <span class="drug-class">Anticholinergic</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Blocks acetylcholine in CNS → prevents nausea/vomiting
+                </div>
+                
+                <div class="info-section">
+                    <h3>⚠️ Side Effects</h3>
+                    <ul>
+                        <li>Dry mouth</li>
+                        <li>Blurred vision</li>
+                        <li>Drowsiness</li>
+                        <li>Urinary retention</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>Apply patch behind ear 4 hours BEFORE travel</strong></li>
+                        <li>Avoid driving or machinery</li>
+                        <li>Wash hands after application</li>
+                        <li>Remove after 3 days</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-box">
+                    <strong>💡 Perfect for:</strong> Cruises, long car rides, flights!
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">🌊 Dimenhydrinate & Meclizine</div>
+                <span class="drug-class">H1 Antihistamines</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Blocks histamine receptors → prevents vestibular stimulation
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li>Avoid alcohol</li>
+                        <li><strong>Caution with older adults</strong> (anticholinergic effects)</li>
+                        <li>Take 30-60 min before travel</li>
+                        <li>Avoid driving</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-box">
+                    <strong>💡 Brand Names:</strong> Dramamine (Dimenhydrinate), Bonine (Meclizine)
+                </div>
+            </div>
+        </div>
+        
+        <!-- ANTIDIARRHEALS -->
+        <div id="antidiarrheal" class="content-section">
+            <h2 style="color: #38f9d7; margin-bottom: 20px;">🛑 ANTIDIARRHEAL DRUGS</h2>
+            
+            <div class="drug-card">
+                <div class="drug-name">🛑 Loperamide (Imodium)</div>
+                <span class="drug-class">Opioid Antidiarrheal</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Decreases GI motility + increases fluid absorption
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>STOP if bloody stool!</strong></li>
+                        <li>STOP if abdominal distension</li>
+                        <li>Monitor stool frequency</li>
+                        <li>OTC - most commonly used</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-box">
+                    <strong>💡 Remember:</strong> Most common OTC antidiarrheal - safest opioid option!
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">💊 Diphenoxylate (Lomotil)</div>
+                <span class="drug-class">Opioid Antidiarrheal + Atropine</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Slows intestinal motility (Combined with atropine to reduce abuse)
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>Risk for dependence</strong> (opioid!)</li>
+                        <li>Avoid exceeding prescribed dose</li>
+                        <li>Monitor respiratory rate</li>
+                        <li>Prescription required</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>🚨 CAUTION:</strong> Controlled substance! Has abuse potential despite atropine.
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">🦠 Ciprofloxacin</div>
+                <span class="drug-class">Fluoroquinolone Antibiotic</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Inhibits bacterial DNA synthesis (for INFECTIOUS diarrhea)
+                </div>
+                
+                <div class="info-section">
+                    <h3>⚠️ Side Effects</h3>
+                    <ul>
+                        <li>Nausea</li>
+                        <li>Diarrhea (ironically!)</li>
+                        <li><strong>Tendon rupture</strong></li>
+                        <li>Photosensitivity</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>Avoid antacids & dairy</strong> (↓ absorption)</li>
+                        <li>Encourage fluids</li>
+                        <li>Use sunscreen</li>
+                        <li>Report tendon pain immediately</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>🚨 BLACK BOX WARNING:</strong> Risk of tendon rupture, especially Achilles tendon!
+                </div>
+            </div>
+        </div>
+        
+        <!-- IBS MEDS -->
+        <div id="ibs" class="content-section">
+            <h2 style="color: #fee140; margin-bottom: 20px;">🌀 IBS MEDICATIONS</h2>
+            
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 20px;"><strong>IBS-D</strong> (Diarrhea-predominant) vs <strong>IBS-C</strong> (Constipation-predominant)</p>
+            
+            <div class="drug-card">
+                <div class="drug-name">💊 Antispasmodics (Dicyclomine, Hyoscyamine)</div>
+                <span class="drug-class">Anticholinergic Antispasmodics</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Relaxes smooth muscle → reduces cramping & pain
+                </div>
+                
+                <div class="info-section">
+                    <h3>⚠️ Side Effects</h3>
+                    <ul>
+                        <li>Dry mouth</li>
+                        <li>Blurred vision</li>
+                        <li>Constipation</li>
+                        <li>Urinary retention</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li>Avoid driving</li>
+                        <li><strong>Caution with glaucoma</strong></li>
+                        <li>Monitor urinary output</li>
+                        <li>Take before meals</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">🌾 Psyllium (Metamucil)</div>
+                <span class="drug-class">Bulk-Forming Agent</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Adds fiber → increases stool bulk (works for BOTH diarrhea & constipation!)
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>Take with FULL glass of water</strong></li>
+                        <li>Prevents both constipation AND diarrhea</li>
+                        <li>Safe for long-term use</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-box">
+                    <strong>💡 Remember:</strong> Fiber works BOTH ways - normalizes stool!
+                </div>
+            </div>
+            
+            <div class="drug-card" style="border-left-color: #e74c3c;">
+                <div class="drug-name">🚺 Alosetron</div>
+                <span class="drug-class" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">5-HT₃ Antagonist (IBS-D - WOMEN ONLY)</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Slows colonic transit, reduces GI pain
+                </div>
+                
+                <div class="info-section">
+                    <h3>⚠️ Side Effects</h3>
+                    <ul>
+                        <li><strong>Constipation</strong></li>
+                        <li><strong>Ischemic colitis</strong> 🚨</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>For WOMEN with severe IBS-D only</strong></li>
+                        <li><strong>Report rectal bleeding immediately!</strong></li>
+                        <li>Restricted distribution program</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>🚨 BLACK BOX WARNING:</strong> Risk of ischemic colitis!
+                </div>
+            </div>
+            
+            <div class="drug-card" style="border-left-color: #3498db;">
+                <div class="drug-name">💧 Lubiprostone (Amitiza)</div>
+                <span class="drug-class" style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);">Chloride Channel Activator (IBS-C)</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Increases intestinal fluid → softens stool
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>Take with food & water</strong></li>
+                        <li>For IBS-C (constipation)</li>
+                        <li>Also used for chronic constipation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- IBD MEDS -->
+        <div id="ibd" class="content-section">
+            <h2 style="color: #330867; margin-bottom: 20px;">🔥 IBD MEDICATIONS</h2>
+            <p style="text-align: center; font-size: 1.1em; margin-bottom: 20px;">For Crohn's Disease & Ulcerative Colitis</p>
+            
+            <div class="drug-card">
+                <div class="drug-name">💊 Budesonide</div>
+                <span class="drug-class">Corticosteroid</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Reduces inflammation in GI tract
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>TAPER dose - never stop abruptly!</strong></li>
+                        <li>Monitor glucose</li>
+                        <li>Watch for infection</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">🧬 Azathioprine</div>
+                <span class="drug-class">Immunosuppressant</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Suppresses immune system → reduces inflammation
+                </div>
+                
+                <div class="info-section">
+                    <h3>⚠️ Side Effects</h3>
+                    <ul>
+                        <li><strong>Bone marrow suppression</strong></li>
+                        <li>Infection risk</li>
+                        <li>Hepatotoxicity</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>Monitor CBC regularly</strong></li>
+                        <li>Monitor liver function tests</li>
+                        <li>Watch for infection</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">🧪 Infliximab</div>
+                <span class="drug-class">Biologic / TNF-alpha Inhibitor</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Blocks TNF-alpha → reduces severe inflammation
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>Test for TB BEFORE starting!</strong></li>
+                        <li>Monitor for infection constantly</li>
+                        <li>Given by IV infusion</li>
+                        <li>Observe during/after infusion</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>🚨 BLACK BOX WARNING:</strong> Risk of serious infections including TB!
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">🦠 Metronidazole (Flagyl)</div>
+                <span class="drug-class">Antibiotic / Antiprotozoal</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Kills anaerobic bacteria
+                </div>
+                
+                <div class="info-section">
+                    <h3>⚠️ Side Effects</h3>
+                    <ul>
+                        <li><strong>Metallic taste</strong></li>
+                        <li><strong>Disulfiram reaction with alcohol</strong></li>
+                        <li>Peripheral neuropathy</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>NO ALCOHOL!</strong> (severe reaction)</li>
+                        <li>Monitor liver function</li>
+                        <li>Also used for C. diff</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>🍺 CRITICAL:</strong> Avoid alcohol during treatment and for 3 days after!
+                </div>
+            </div>
+        </div>
+        
+        <!-- PROKINETICS -->
+        <div id="prokinetic" class="content-section">
+            <h2 style="color: #fed6e3; margin-bottom: 20px;">⚡ PROKINETIC AGENTS</h2>
+            <p style="text-align: center; font-size: 1.1em; margin-bottom: 20px;">These drugs SPEED UP GI motility!</p>
+            
+            <div class="drug-card">
+                <div class="drug-name">🚀 Metoclopramide (Reglan)</div>
+                <span class="drug-class">Prokinetic / Dopamine Antagonist</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Increases GI motility + antiemetic
+                </div>
+                
+                <div class="info-section">
+                    <h3>⚠️ Side Effects</h3>
+                    <ul>
+                        <li><strong>EPS (Extrapyramidal Symptoms)</strong></li>
+                        <li><strong>Tardive dyskinesia</strong> 🚨</li>
+                        <li>Drowsiness</li>
+                        <li>Restlessness</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>Monitor for tardive dyskinesia!</strong></li>
+                        <li>Give 30 min BEFORE meals</li>
+                        <li>Watch for involuntary movements</li>
+                        <li>Short-term use preferred</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>🚨 BLACK BOX WARNING:</strong> Tardive dyskinesia risk - may be irreversible!
+                </div>
+            </div>
+        </div>
+        
+        <!-- LAXATIVES -->
+        <div id="laxatives" class="content-section">
+            <h2 style="color: #fcb69f; margin-bottom: 20px;">💩 LAXATIVES</h2>
+            
+            <table>
+                <tr>
+                    <th>Type</th>
+                    <th>How It Works</th>
+                    <th>Onset</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td><strong>Bulk-Forming</strong></td>
+                    <td>Absorbs water → increases bulk</td>
+                    <td>12-72 hours</td>
+                    <td>Psyllium (Metamucil)</td>
+                </tr>
+                <tr>
+                    <td><strong>Stool Softener</strong></td>
+                    <td>Allows water into stool</td>
+                    <td>1-3 days</td>
+                    <td>Docusate (Colace)</td>
+                </tr>
+                <tr>
+                    <td><strong>Stimulant</strong></td>
+                    <td>Stimulates contractions</td>
+                    <td>6-12 hours</td>
+                    <td>Bisacodyl (Dulcolax)</td>
+                </tr>
+                <tr>
+                    <td><strong>Osmotic</strong></td>
+                    <td>Draws water into intestine</td>
+                    <td>30 min - 3 hours</td>
+                    <td>MiraLAX, Milk of Magnesia</td>
+                </tr>
+                <tr>
+                    <td><strong>Lubricant</strong></td>
+                    <td>Coats stool</td>
+                    <td>6-8 hours</td>
+                    <td>Mineral Oil</td>
+                </tr>
+            </table>
+            
+            <div class="drug-card">
+                <div class="drug-name">🌾 Psyllium (Metamucil)</div>
+                <span class="drug-class">Bulk-Forming Laxative</span>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>MUST take with FULL glass of water!</strong></li>
+                        <li>Safe for long-term use</li>
+                        <li>Natural fiber</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-box">
+                    <strong>💡 Remember:</strong> SAFEST for long-term use!
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">💊 Docusate Sodium (Colace)</div>
+                <span class="drug-class">Stool Softener</span>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>Perfect for POST-OP use!</strong></li>
+                        <li>Prevents straining</li>
+                        <li>Safe, gentle</li>
+                        <li>Takes 1-3 days</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-box">
+                    <strong>💡 Remember:</strong> Go-to for post-op patients!
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">💥 Bisacodyl (Dulcolax)</div>
+                <span class="drug-class">Stimulant Laxative</span>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>SHORT-TERM use only!</strong></li>
+                        <li><strong>Do NOT crush tablets</strong> (enteric-coated)</li>
+                        <li>Works in 6-12 hours</li>
+                        <li>Can cause cramping</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>⚠️ CAUTION:</strong> Can lead to dependency with chronic use!
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">🥛 Milk of Magnesia</div>
+                <span class="drug-class">Osmotic Laxative</span>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>AVOID in renal impairment!</strong></li>
+                        <li>Monitor electrolytes</li>
+                        <li>Works in 30 min - 3 hours</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>🚨 CONTRAINDICATED:</strong> Kidney disease! Magnesium accumulates.
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">💧 Polyethylene Glycol (MiraLAX)</div>
+                <span class="drug-class">Osmotic Laxative</span>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>SAFE for chronic constipation!</strong></li>
+                        <li>Mix with water or juice</li>
+                        <li>Tasteless, odorless</li>
+                        <li>Does NOT cause cramping</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-box">
+                    <strong>💡 Remember:</strong> One of BEST for daily use!
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">🛢️ Mineral Oil</div>
+                <span class="drug-class">Lubricant Laxative</span>
+                
+                <div class="info-section">
+                    <h3>⚠️ Side Effects</h3>
+                    <ul>
+                        <li>Decreased vitamin absorption (A, D, E, K)</li>
+                        <li><strong>Aspiration risk</strong></li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>Avoid CHRONIC use</strong></li>
+                        <li><strong>ASPIRATION RISK if oral!</strong></li>
+                        <li>Better as rectal enema</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>⚠️ CAUTION:</strong> Do NOT give orally to aspiration-risk patients!
+                </div>
+            </div>
+        </div>
+        
+        <!-- OTHER GI MEDS -->
+        <div id="other" class="content-section">
+            <h2 style="color: #fecfef; margin-bottom: 20px;">🧬 OTHER GI MEDICATIONS</h2>
+            
+            <div class="drug-card">
+                <div class="drug-name">🧬 Pancrelipase</div>
+                <span class="drug-class">Digestive Enzyme Replacement</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Replaces pancreatic enzymes (lipase, protease, amylase)
+                </div>
+                
+                <div class="info-section">
+                    <h3>🎯 Used For</h3>
+                    <ul>
+                        <li>Cystic fibrosis</li>
+                        <li>Chronic pancreatitis</li>
+                        <li>Pancreatic insufficiency</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>Take WITH meals/snacks!</strong></li>
+                        <li><strong>Do NOT crush enteric-coated capsules</strong></li>
+                        <li>Can open capsule, sprinkle on food (don't chew)</li>
+                        <li>Monitor nutritional status</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-box">
+                    <strong>💡 Remember:</strong> Must take with EVERY meal!
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">💎 Ursodiol</div>
+                <span class="drug-class">Gallstone Dissolver</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Decreases cholesterol in bile → dissolves small stones
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li>Take with food</li>
+                        <li>Monitor liver function tests</li>
+                        <li>Only for CHOLESTEROL stones</li>
+                        <li>May take months to work</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-box">
+                    <strong>💡 Remember:</strong> Alternative to surgery for small gallstones!
+                </div>
+            </div>
+            
+            <div class="drug-card">
+                <div class="drug-name">💊 Chenodiol</div>
+                <span class="drug-class">Gallstone Dissolver</span>
+                
+                <div class="highlight-box">
+                    <strong>⚙️ Mechanism:</strong> Reduces hepatic synthesis of cholesterol → dissolves gallstones
+                </div>
+                
+                <div class="info-section">
+                    <h3>⚠️ Side Effects</h3>
+                    <ul>
+                        <li>Diarrhea</li>
+                        <li><strong>Hepatotoxicity</strong></li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3>🩺 Nursing Considerations</h3>
+                    <ul>
+                        <li><strong>Monitor LFTs regularly</strong></li>
+                        <li>Use in non-calcified cholesterol stones only</li>
+                        <li>Less commonly used than ursodiol</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>⚠️ Monitor:</strong> Liver function tests - risk of hepatotoxicity!
+                </div>
+            </div>
+        </div>
+        
+        <!-- SUMMARY -->
+        <div style="background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); padding: 30px; border-radius: 15px; margin-top: 30px;">
+            <h2 style="text-align: center; margin-bottom: 20px;">🎯 NCLEX Quick Reference</h2>
+            
+            <div class="warning-box">
+                <h3>🚨 Critical Drug Interactions</h3>
+                <ul>
+                    <li><strong>K+-Sparing Diuretics + ACE Inhibitors:</strong> SEVERE hyperkalemia!</li>
+                    <li><strong>Metronidazole + Alcohol:</strong> Severe N/V reaction</li>
+                    <li><strong>Loop Diuretics IV:</strong> Push SLOWLY (ototoxicity)</li>
+                    <li><strong>Corticosteroids:</strong> NEVER stop abruptly - TAPER!</li>
+                </ul>
+            </div>
+            
+            <div class="tip-box" style="margin-top: 20px;">
+                <h3>💡 Memory Tricks</h3>
+                <ul>
+                    <li><strong>Loop = LOUD & POWERFUL</strong> (most potent diuretic)</li>
+                    <li><strong>K+-Sparing = KEEPS potassium</strong></li>
+                    <li><strong>Zofran = Zone out the nausea</strong></li>
+                    <li><strong>Reglan = Regular GI movement</strong></li>
+                    <li><strong>Flagyl = NO alcohol = FLAGyl your alcohol away!</strong></li>
+                </ul>
+            </div>
+            
+            <div class="highlight-box" style="margin-top: 20px;">
+                <h3>✅ Top 5 Nursing Priorities for ANY Med</h3>
+                <ol style="margin-left: 30px; line-height: 2;">
+                    <li><strong>5 Rights:</strong> Patient, Drug, Dose, Route, Time</li>
+                    <li><strong>Know the mechanism:</strong> Helps predict effects</li>
+                    <li><strong>Monitor labs:</strong> K+ for diuretics, LFTs, CBC</li>
+                    <li><strong>Watch adverse effects:</strong> Especially life-threatening ones</li>
+                    <li><strong>TEACH the patient:</strong> Timing, food, what to report</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="tip-box" style="margin-top: 30px; font-size: 1.1em;">
+            <h2 style="text-align: center; margin-bottom: 15px;">💪 You've Got This!</h2>
+            <p style="text-align: center; line-height: 1.8;">
+                <strong>Think like a nurse: Safety first, patient-centered care, and critical thinking!</strong><br>
+                Remember - understanding the MECHANISM helps you predict everything else.<br>
+                You know more than you think! Trust your knowledge and clinical judgment! 🌟
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        function showTab(tabName) {
+            // Hide all content sections
+            var sections = document.getElementsByClassName('content-section');
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].classList.remove('active');
+            }
+            
+            // Remove active class from all buttons
+            var buttons = document.getElementsByClassName('tab-button');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active');
+            }
+            
+            // Show selected section
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
